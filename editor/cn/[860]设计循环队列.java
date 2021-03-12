@@ -47,6 +47,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class MyCircularQueue {
 
+<<<<<<< HEAD
     int[] Queue;
 
     public MyCircularQueue(int k) {
@@ -75,6 +76,51 @@ class MyCircularQueue {
     
     public boolean isFull() {
 
+=======
+    private int [] queue;
+    private int head=-1;
+    private int tail=-1;
+    private int length=0;
+
+    public MyCircularQueue(int k) {
+        queue = new int[k];
+    }
+
+    public boolean enQueue(int value) {
+        if (length >= queue.length) return false;
+        if(head==-1)head++;
+        length++;
+        queue[(head+length-1)%queue.length] = value;
+        return true;
+ }
+
+    public boolean deQueue() {
+        if (length == 0) return false;
+        queue[head]=-1;
+        head=(head+1)%queue.length;
+        length--;
+        return true;
+    }
+
+    public int Front() {
+        if(length==0)return -1;
+        return queue[head];
+    }
+
+    public int Rear() {
+        if(length==0)return -1;
+        return queue[(head+length-1)%queue.length];
+    }
+
+    public boolean isEmpty() {
+        if(length==0)return true;
+        else return false;
+    }
+
+    public boolean isFull() {
+        if(length==queue.length)return true;
+        else return false;
+>>>>>>> 83ee630d3491857d7a18cc34c138cafb51a326e9
     }
 }
 

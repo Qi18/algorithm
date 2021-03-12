@@ -1,6 +1,8 @@
 public class Solution {
 
     public static void main(String[] args) {
+        int[] b=new int[]{-1*5};
+        System.out.println(b[0]);
         Solution a=new Solution();
         ListNode a1=new ListNode(9);
         ListNode a2=new ListNode(9,a1);

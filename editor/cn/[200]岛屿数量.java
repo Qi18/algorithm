@@ -47,7 +47,31 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numIslands(char[][] grid) {
+        int sum = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    sum++;
+                    dfs(i, j, grid);
+                }
+            }
+        }
+        return sum;
+    }
 
+    public void dfs(int row, int column, char[][] grid) {
+        if (!inAres(row, column, grid)) return;
+        if (grid[row][column] != '1') return;
+        grid[row][column] = '2';
+        dfs(row - 1, column, grid);
+        dfs(row + 1, column, grid);
+        dfs(row, column - 1, grid);
+        dfs(row, column + 1, grid);
+    }
+
+    public boolean inAres(int row, int column, char[][] grid) {
+        if (row >= 0 && row < grid.length && column >= 0 && column < grid[0].length) return true;
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
