@@ -1,2 +1,2 @@
-# leetcode网上练题
-java实现
+# algorithm
++ 目前使用java实现
