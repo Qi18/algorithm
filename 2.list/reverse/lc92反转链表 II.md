@@ -1,13 +1,4 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+```java
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
         ListNode virHead = new ListNode();
@@ -35,5 +26,5 @@ class Solution {
         }
     }
 }
-
-//区间内反转，普通反转的升级版
+```
++ 区间内反转，普通反转的升级版
