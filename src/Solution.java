@@ -1,47 +1,42 @@
 public class Solution {
 
     public static void main(String[] args) {
-        int[] b=new int[]{-1*5};
-        System.out.println(b[0]);
-        Solution a=new Solution();
-        ListNode a1=new ListNode(9);
-        ListNode a2=new ListNode(9,a1);
-        ListNode a3=new ListNode(9,a2);
-        ListNode a4=new ListNode(9,a3);
-        ListNode a5=new ListNode(9);
-        ListNode a6=new ListNode(9,a5);
-        ListNode a7=new ListNode(9,a6);
-        ListNode a8=new ListNode(9,a7);
-        ListNode k=a.addTwoNumbers(a4,a8);
-        while(k!=null){
-            System.out.print(k.val);
-            k=k.next;
-        }
 
-    }
-
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode head=null;
-        ListNode tail=null;
-        int carry = 0;
-        while (l1 != null || l2 != null) {
-            int val1 = l1 != null ? l1.val : 0;
-            int val2 = l2 != null ? l2.val : 0;
-            int sum = val1 + val2 + carry;
-            if (head == null) {
-                head = new ListNode(sum % 10);
-                tail = head;
+        int num = 15;
+        //odd /2
+        //even +1 -1
+        // 1
+        //f(n) = f(n / 2) + 1
+        // f(n) = min(f(n - 1), f(n + 1))
+        int[] dp = new int[num + 1];
+        dp[1] = 0;
+        for (int i = 2; i <= num; i++) {
+            if (i % 2 == 0) {
+                dp[i] = dp[i / 2] + 1;
             } else {
-                tail.next  = new ListNode(sum % 10);
-                tail = tail.next;
+                dp[i] = Math.min(dp[i - 1], dp[i + 1]) + 1;
             }
-            carry = (l1.val + l2.val) / 10;
-            if (l1 != null) l1 = l1.next;
-            if (l2 != null) l2 = l2.next;
         }
-        if(carry==1)tail.next=new ListNode(1);
-        return head;
+        System.out.println(dp[num]);
     }
+
+   private boolean isMatch(int[] nums, int k, int startIndex) {
+        // 2, 3, 5, 3, 2
+        int n = nums.length;
+        if (startIndex >= n) return true;
+        for (int i = startIndex; i < n - 1; i++) {
+            if (nums[i] > nums[i + 1]) {
+                if (k == 0) {
+                    return false;
+                }
+                boolean isMatch0 = isMatch(nums, k - 1, i + 1);
+                nums[i + 1] = nums[i];
+                boolean isMatch1 = isMatch(nums, k - 1, i);
+                return isMatch0 || isMatch1;
+            }
+        }
+        return true;
+   }
 }
 class ListNode {
   int val;
